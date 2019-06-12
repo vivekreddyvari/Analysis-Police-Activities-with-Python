@@ -1,0 +1,36 @@
+Notes Taken:
+Analysing Police Activities with Pandas
+ - Standford Open Policing Project Dataset
+* Introduction to the dataset
+ - Traffic stops by police officers
+ 
+* Prepare the data for analysis
+1) Examine the Data
+2) clean the data
+
+import pandas as pd
+ri = pd.read_csv('police.csv')
+
+each row represent one stop
+Locating Missing Values:
+ df.isnull () gives the missing values, the missing values is indicate by true/False
+  - True shows the values are present
+  - False shoes the values are NOT present
+  ri.isnull()
+  
+- df.isnull.sum()
+give the sum of the dataframe
+ - shows the count which values are not present
+ - shows the 0 for values present
+ - shows the values (represent count in number )for values not present 
+
+-  df.shape
+ - gives the columns with rows count which have missing values.
+
+the null columns can be dropped with drop method.
+- df.drop('Colname', axis='columns', inplace=True)
+
+dropna() method is good while dropping the missing values
+df.dropna(subset=['colname1', 'colname2'], inplace=True)
+
+
