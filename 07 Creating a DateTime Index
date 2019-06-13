@@ -1,0 +1,41 @@
+Creating a Datetime Index
+	* Using datetime datatype
+	* df.head()
+	* df.dtypes
+	* combining columns which are of date and time
+	* Steps:
+		 - df.date.str.replace('/', '-')
+		 - combined  = df.date.str.cat(df.time, sep=' ' )
+	* Converting to datatime format:
+		- df['date_and_time'] = pd.to_datetime(combined)
+		- object
+		
+ date   time   price       date_and_time
+0  2/13/18  16:00  164.34 2018-02-13 16:00:00
+1  2/14/18  16:00  167.37 2018-02-14 16:00:00
+2  2/15/18  16:00  172.99 2018-02-15 16:00:00
+apple.dtypes
+
+date                     object
+time                     object
+price                   float64
+date_and_time    datetime64[ns]
+dtype: object
+
+Setting index:
+ - df.set_index('date_and_time', inplace=True)
+df
+
+                        date   time   price
+date_and_time                              
+2018-02-13 16:00:00  2/13/18  16:00  164.34
+2018-02-14 16:00:00  2/14/18  16:00  167.37
+2018-02-15 16:00:00  2/15/18  16:00  172.99
+
+df.index
+
+DatetimeIndex(['2018-02-13 16:00:00', '2018-02-14 16:00:00',
+               '2018-02-15 16:00:00'],
+              dtype='datetime64[ns]', name='date_and_time', freq=None)
+df.columns
+Index(['date', 'time', 'price'], dtype='object')
