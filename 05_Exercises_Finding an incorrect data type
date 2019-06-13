@@ -1,1 +1,15 @@
 The dtypes attribute of the ri DataFrame has been printed for you. Your task is to explore the ri DataFrame in the IPython Shell to determine which column's data type should be changed.
+stop_date             object
+stop_time             object
+driver_gender         object
+driver_race           object
+violation_raw         object
+violation             object
+search_conducted        bool
+search_type           object
+stop_outcome          object
+is_arrested           object - should be datatype bool (True or False)
+stop_duration         object
+drugs_related_stop      bool
+district              object
+dtype: object
