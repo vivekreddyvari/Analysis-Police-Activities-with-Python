@@ -1,0 +1,55 @@
+Does Gender commit traffic violiations?
+ - Counting unique values
+ - value_counts(): Counts the unique values in a Series
+ - Best suited for categorical data
+ 
+ df.col-name.value_counts()
+ Expressing counts as proportions.
+ 
+ df.col-name.value_counts(normalize=True)
+
+Citation            0.890855
+Warning             0.059351
+Arrest Driver       0.031605
+No Action           0.007211
+N/D                 0.007014
+Arrest Passenger    0.003964
+Name: stop_outcome, dtype: float64
+
+Filtering  Dataframes rows
+df.col-name2.value_counts()
+White       61870	(how many white)
+Black       12285
+Hispanic     9727
+Asian        2389
+Other         265
+Name: driver_race, dtype: int64
+
+how check count of an unique value of column?
+
+white = df[df.col-name2 == 'white']
+white.shape  = 61870
+
+Comparing stop outcomes for two groups
+normalize gives the ratio in percentage
+white.stop_outcome.value_counts(normalize=True)
+
+Citation            0.902263
+Warning             0.057508
+Arrest Driver       0.024018
+No Action           0.007031
+N/D                 0.006433
+Arrest Passenger    0.002748
+Name: stop_outcome, dtype: float64
+
+asian = ri[ri.driver_race == 'Asian']
+asian.stop_outcome.value_counts(normalize=True)
+
+Citation            0.922980
+Warning             0.045207
+Arrest Driver       0.017581
+No Action           0.008372
+N/D                 0.004186
+Arrest Passenger    0.001674
+Name: stop_outcome, dtype: float64
+
