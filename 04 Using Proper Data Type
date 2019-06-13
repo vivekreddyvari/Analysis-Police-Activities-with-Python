@@ -1,0 +1,39 @@
+Tutorial 
+
+Using Proper Datatypes
+ - Examining the data types
+ - ri.dtypes
+
+stop_date             object
+stop_time             object
+driver_gender         object
+driver_race           object
+violation_raw         object
+violation             object
+search_conducted        bool	-True or False
+search_type           object
+stop_outcome          object
+is_arrested           object
+stop_duration         object
+drugs_related_stop      bool	-True or False
+district              object
+
+Why do data type matter?
+ - Affects which operation you can perform?
+ - Avoid storing data as strings (when possible)
+ 	- int, float enables mathematical operations
+ 	- datatime, enables date-based method attributes
+ 	- category, uses less memory and runs faster
+ 	- bool: enables logical and mathematical operations
+
+Fixing a datatype.
+df.price.dtype.
+dtype('O')
+
+to change the data type of the variable.
+df['price'] = df.price.astype('float')
+apple.price.dtype
+dtype('float64')
+
+Bracket notation: apple['price']
+Must be used on the left side of an assignment statement
