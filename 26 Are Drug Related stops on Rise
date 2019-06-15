@@ -1,0 +1,30 @@
+Understanding and Tutorial based on a dataframe Apple. stocks
+Are Drug-related stops on rise?
+
+ - Resampling price, instead by groupby
+  apple.groupby(apple.index.month).price.mean()
+ - when u change the time-frequency 
+  apple.price.resample('M').mean()
+
+# Resampling the volume
+ - apple.volume.resample('M').mean()
+
+# Concatenating price and volume
+
+Step1: Resample necessary columns
+ - monthly_price = apple.price.resample('M').mean()
+ - monthly_volume = apple.volume.resample('M').mean()
+
+Step2:
+pd.concat([monthly_price, monthly_volume], axis='columns')
+
+monthly = pd.concat([monthly_price, monthly_volume], axis='columns')
+
+Plotting price and volume (1)
+monthly.plot()
+plt.show()
+
+Plotting price and volume (2)
+# make subplots to true show different columns (i.e price and columns in this scenario)
+monthly.plot(subplots=True)
+plt.show()
