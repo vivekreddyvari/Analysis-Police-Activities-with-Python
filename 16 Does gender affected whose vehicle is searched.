@@ -1,0 +1,69 @@
+Does gender affect whose vehicle is searched?
+
+Math with Boolean values
+
+# to generate the true and false values isnull()
+  df.isnull().sum()
+  
+# to see the means using numpy to represent the %means of values
+  import numpy as np
+  np.mean([1,0,0,0])
+  out: 0.25
+  
+# by using value_counts, it factors out the both True value and False
+  ri.is_arrested.value_counts(normalize=True)
+  False    0.964431
+  True     0.035569
+  Name: is_arrested, dtype: float64
+
+# to factor out only "True". we can mean() method to filter out directly
+  ri.is_arrested.mean()
+  0.0355690117407784
+     
+  ri.is_arrested.dtype
+  dtype('bool')
+
+# groupby()
+Study the arrest rate by police district
+ ri.district.unique()
+
+array(['Zone X4', 'Zone K3', 'Zone X1', 'Zone X3', 'Zone K1', 'Zone K2'],
+      dtype=object)
+
+# arrest-rate by each zone
+ri[ri.district == 'Zone K1'].is_arrested.mean()
+0.024349083895853423
+
+ri[ri.district == 'Zone K2'].is_arrested.mean()
+0.030800588834786546
+
+# arrest-rate which as highest to lowest (smartly, we can use groupby())
+ri.groupby('district').is_arrested.mean()
+district
+Zone K1    0.024349
+Zone K2    0.030801
+Zone K3    0.032311
+Zone X1    0.023494
+Zone X3    0.034871
+Zone X4    0.048038
+
+Grouping by multiple categories
+
+# to show number of females and males arrested with-respect-to district.
+ri.groupby(['district', 'driver_gender']).is_arrested.mean()
+
+district  driver_gender
+Zone K1   F                0.019169
+          M                0.026588
+Zone K2   F                0.022196
+          M                0.034285
+Zone K3   F                0.025156
+          M                0.034961
+Zone X1   F                0.019646
+          M                0.024563
+Zone X3   F                0.027188
+          M                0.038166
+Zone X4   F                0.042149
+          M                0.049956
+          
+
