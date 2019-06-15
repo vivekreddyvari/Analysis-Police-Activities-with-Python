@@ -1,0 +1,49 @@
+How long might you be stopped for violation?
+
+-  translate strings to data
+-  apple.stock prices
+Analysing an object columns
+ - Create a Boolean column: True if the price went up, and False otherwise
+ - Calculate how often the price went up by taking the column 'mean'
+
+apple.change.dtype
+dtype('O')
+astype() can't be used in this case
+
+Mapping one set of values to another (Map method)
+step1 - Dictionary maps the values you have to the values you want
+step2 - mapping = {'up':True, 'down':False}
+step3 - apple['is_up'] = apple.change.map(mapping)
+step4 - pple.is_up.mean() (0.5)
+
+Calculating the search rate
+step1  - Visualize how often searches were performed after each type of violation
+step2  - ri.groupby('violation').search_conducted.mean()
+ - Returns a Series sorted in alphabetical order
+ search_rate.plot(kind='bar')
+ plt.show()
+ 
+Ordering the bars (1)
+
+Order the bars from left to right by size
+search_rate.sort_values()
+
+violation
+Speeding               0.021560
+Seat belt              0.031513
+Other                  0.045362
+Moving violation       0.057014
+Equipment              0.064280
+Registration/plates    0.093438
+Name: search_conducted, dtype: float64
+
+Ordering the bars (2)
+
+search_rate.sort_values().plot(kind='bar')
+plt.show()
+
+Rotating the bars
+to rotate the bars to horizontal
+
+search_rate.sort_values().plot(kind='barh')
+plt.show()
