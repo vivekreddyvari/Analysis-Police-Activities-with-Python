@@ -27,3 +27,4 @@ drugs_related_stop              bool
 district                      object
 stop_datetime         datetime64[ns]
 dtype: object
+
