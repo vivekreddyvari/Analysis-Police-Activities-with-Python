@@ -1,0 +1,30 @@
+Does gender affect who gets a ticket for speeding?
+
+Filtering by multiple conditions(1)
+ 
+ # to create the dataframe of only female driver
+ female = ri[ri.driver_gender == 'F']
+ female.shape
+ gives the number of rows
+ 
+ # to created the female driver only arrested
+ female_and_arrested = ri[(ri.driver_gender == 'F') & (ri.is_arrested == True)]
+  - each condition is represented by parenthesis ()
+  - and & ampersand operator is 'and' condition
+  
+Filtering by multiple conditions(2)
+  # to create the data frame with pipe-character or logical OR '|'
+  female_or_arrested = ri[(ri.driver_gender == 'F') | (ri.is_arrested == True)]
+ 
+Rules for filtering by multiple conditions.
+  - Ampersand (&) only when two conditions satisfy
+  - Pipe (|) includes rows that satisfy either condition.
+  - Each conditions must be separated by paranthesis
+  - conditions can check equality (==) or not equality (!=)
+  - can use more than two conditions.
+
+Correlation and Causation
+ - Analyse the relationship between gender and stop outcome
+ - Assess whether there is a correlation 
+ - no causation required
+ 
