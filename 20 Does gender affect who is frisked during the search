@@ -1,0 +1,72 @@
+Does gender affect who is frisked during the search?
+
+Examining the search types (1)
+
+ri.search_conducted.value_counts()
+
+False    83229
+True      3307
+Name: search_conducted, dtype: int64
+
+ri.search_type.value_counts(dropna=False)
+
+NaN                                                         83229
+Incident to Arrest                                           1290
+Probable Cause                                                924
+Inventory                                                     219
+Reasonable Suspicion                                          214
+Protective Frisk                                              164
+Incident to Arrest,Inventory                                  123
+Incident to Arrest,Probable Cause                             100
+
+value_counts() excludes missing values by default
+
+Examining the search type(2)
+
+ri.search_type.value_counts()
+
+Incident to Arrest                                          1290
+Probable Cause                                               924
+Inventory                                                    219
+Reasonable Suspicion                                         214
+Protective Frisk                                             164
+Incident to Arrest,Inventory                                 123
+Incident to Arrest,Probable Cause                            100
+Probable Cause,Reasonable Suspicion                           54
+Incident to Arrest,Inventory,Probable Cause                   35
+Probable Cause,Protective Frisk                               35
+Incident to Arrest,Protective Frisk                           33
+Inventory,Probable Cause                                      25
+
+Multiple values are separated by commas
+219 searches in which "Inventory" was the only search type
+
+
+Searching for a string
+
+ri['inventory'] = ri.search_type.str.contains('Inventory', na=False)
+ - str.contains() returns True if string is found, False if not found
+ - na=False returns False when it finds a missing value
+
+ri.inventory.dtype
+dtype('bool')
+True means an inventory was done, False means it was not
+
+Calculate the percentage of searches, i.e. Calculating the inventory rate
+
+# wrong way of calculating the search.
+ri.inventory.mean()
+0.0050961449570121106 
+0.5% of all traffic stops resulted in an inventory
+
+# first find the true condition, then apply mean on it 
+ searched = ri[ri.search_conducted == True]
+searched.inventory.mean()
+0.13335349259147264
+13.3% of searches included an inventory
+
+
+ 
+ 
+ 
+ 
