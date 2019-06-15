@@ -1,0 +1,42 @@
+What violations are caught in each district?
+ - computing frequency table.
+ - crosstab function.
+   * cross tabulations
+   * Frequency table : Tallies of how many times each combinations of values occurs
+
+# cross tab
+pd.crosstab(ri.driver_race, ri.driver_gender)
+
+- other traditional way of knowing or finding is stretchy 
+ - how many female asian-drivers were stopped?
+	 - ri[(ri.driver_race == 'Asian') & (ri.driver_gender == 'F')].shape
+		(551, 14)
+ - driver_race is along the index, driver_gender is along the columns
+ 
+Selecting a DataFrame slice
+
+-  loc accessor : select from a Dataframe by label
+-  driver_gender      F      M
+driver_race                
+Asian            551   1838
+Black           2681   9604
+Hispanic        1953   7774
+Other             53    212
+White          18536  43334
+table.loc['Asian':'Hispanic']
+
+driver_gender     F     M
+driver_race              
+Asian           551  1838
+Black          2681  9604
+Hispanic       1953  7774
+
+table = table.loc['Asian':'Hispanic']
+Creating a line plot
+table.plot(kind='bar')
+plt.show()
+ 
+Stacking the bars
+
+table.plot(kind='bar', stacked=True)
+plt.show()
