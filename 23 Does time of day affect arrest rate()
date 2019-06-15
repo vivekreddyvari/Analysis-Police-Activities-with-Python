@@ -1,0 +1,51 @@
+Chapter 3
+
+Does time of day affect arrest rate?
+
+Learnt in previous chapters.
+ - filtering
+ - grouping
+ - value_counts(normalize=True)
+ - groupby().mean()
+
+Accessing datetime attributes (1)
+ # accessing the month attributes 
+  - apple.date_and_time.dt.month
+
+Accessing datetime attributes (2)
+
+apple.set_index('date_and_time', inplace=True)
+apple.index
+
+DatetimeIndex(['2018-01-08 16:00:00', '2018-01-09 16:00:00',
+               '2018-02-08 16:00:00', '2018-02-09 16:00:00',
+               '2018-03-08 16:00:00', '2018-03-09 16:00:00'],
+              dtype='datetime64[ns]', name='date_and_time', freq=None)
+              
+apple.index.month
+Int64Index([1, 1, 2, 2, 3, 3], dtype='int64', name='date_and_time')
+
+Calculating the monthly mean price
+apple.price.mean()
+169.52666666666667
+
+# calculating the mean price of each month.
+
+apple.groupby(apple.index.month).price.mean()
+
+date_and_time
+1    174.34
+2    155.78
+3    178.46
+Name: price, dtype: float64
+monthly_price = apple.groupby(apple.index.month).price.mean()
+
+Plotting the monthly mean price
+import matplotlib.pyplot as plt
+monthly_price.plot()
+
+plt.xlabel('Month')
+plt.ylabel('Price')
+plt.title('Monthly mean stock price for Apple')
+plt.show()
+
