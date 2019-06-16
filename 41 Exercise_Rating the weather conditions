@@ -17,4 +17,4 @@ mapping = {0:'good', 1:'bad', 2:'bad', 3:'bad', 4:'bad', 5:'worse', 6: 'worse', 
 weather['rating'] = weather.bad_conditions.map(mapping)
 
 # Count the unique values in 'rating'
-print(weather.rating.unique())
+print(weather.rating.value_counts())
