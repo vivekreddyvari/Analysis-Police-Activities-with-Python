@@ -1,0 +1,21 @@
+Merging datasets
+
+Merging Datasets
+
+Preparing the first DataFrame
+ - take example of apple prices.
+ - merging 
+ step1 : apple.reset_index(inplace=True)
+ # Preparing the second DataFrame
+  -  for the second df, choose the columns like date, and other specific columns for merge
+ step2 : high = high_low[['DATE', 'HIGH']]
+ step3 : apple_high = pd.merge(left=apple, right=high, left_on='date',
+                      right_on='DATE', how='left')
+                      
+ step4 : Verify
+ Comparing the DataFrames
+
+ Setting the index
+ apple_high.set_index('date_and_time', inplace=True)
+ 
+ 
