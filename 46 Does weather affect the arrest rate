@@ -1,0 +1,84 @@
+Does weather affect the arrest rate:
+- Driver gender and vehicle searhes
+
+ri.search_conducted.mean()
+0.0382153092354627
+ri.groupby('driver_gender').search_conducted.mean()
+
+driver_gender
+F    0.019181
+M    0.045426
+
+# found the violation with male and female. to identify who did what.
+
+ri.groupby(['violation', 'driver_gender']).search_conducted.mean()
+
+violation            driver_gender
+Equipment            F                0.039984
+                     M                0.071496
+Moving violation     F                0.039257
+                     M                0.061524
+Other                F                0.041018
+                     M                0.046191
+Registration/plates  F                0.054924
+                     M                0.108802
+Seat belt            F                0.017301
+                     M                0.035119
+                     
+search_rate = ri.groupby(['violation',
+                          'driver_gender']).search_conducted.mean()
+search_rate
+
+violation            driver_gender
+Equipment            F                0.039984
+                     M                0.071496
+Moving violation     F                0.039257
+                     M                0.061524
+Other                F                0.041018
+                     M                0.046191
+Registration/plates  F                0.054924
+                     M                0.108802
+Seat belt            F                0.017301
+                     M                0.035119
+Speeding             F                0.008309
+                     M                0.027885
+                     
+this is multi-index dataframe
+outer-index levels -  column-names generally
+Inner-index levels - 
+
+search_rate.loc['Equipment']
+
+driver_gender
+F    0.039984
+M    0.071496
+
+Converting a multi-indexed Series to a DataFrame
+
+By unstack a multi-index dataframe, it looks similar to normal-dataframe
+search_rate.unstack()
+
+driver_gender               F         M
+violation                              
+Equipment            0.039984  0.071496
+Moving violation     0.039257  0.061524
+Other                0.041018  0.046191
+Registration/plates  0.054924  0.108802
+Seat belt            0.017301  0.035119
+Speeding             0.008309  0.027885
+
+type(search_rate.unstack())
+pandas.core.frame.DataFrame
+
+other ways is pivot table
+
+ri.pivot_table(index='violation', columns='driver_gender',
+               values='search_conducted')
+driver_gender               F         M
+violation                              
+Equipment            0.039984  0.071496
+Moving violation     0.039257  0.061524
+Other                0.041018  0.046191
+
+
+
