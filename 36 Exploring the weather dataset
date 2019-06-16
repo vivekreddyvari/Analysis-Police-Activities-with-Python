@@ -1,0 +1,42 @@
+Exploring the weather dataset
+ - NOAA - National centers for Environmental Information.
+ - Examining the columns
+ - weather = pd.read_csv('weather.csv')
+weather.head()
+       STATION        DATE  TAVG  TMIN  TMAX  AWND  WSF2  WT01  WT02  WT03   
+0  USW00014765  2005-01-01  44.0    35    53  8.95  25.1   1.0   NaN   NaN   
+1  USW00014765  2005-01-02  36.0    28    44  9.40  14.1   NaN   NaN   NaN   
+2  USW00014765  2005-01-03  49.0    44    53  6.93  17.0   1.0   NaN   NaN   
+3  USW00014765  2005-01-04  42.0    39    45  6.93  16.1   1.0   NaN   NaN   
+4  USW00014765  2005-01-05  36.0    28    43  7.83  17.0   1.0   NaN   NaN   
+
+   ...   WT11  WT13  WT14  WT15  WT16  WT17  WT18  WT19  WT21  WT22  
+0  ...    NaN   1.0   NaN   NaN   NaN   NaN   NaN   NaN   NaN   NaN  
+1  ...    NaN   NaN   NaN   NaN   1.0   NaN   1.0   NaN   NaN   NaN  
+2  ...    NaN   1.0   NaN   NaN   1.0   NaN   NaN   NaN   NaN   NaN  
+3  ...    NaN   1.0   1.0   NaN   1.0   NaN   NaN   NaN   NaN   NaN  
+4  ...    NaN   1.0   NaN   NaN   1.0   NaN   1.0   NaN   NaN   NaN
+TAVG, TMIN, TMAX: Temperature
+AWND, WSF2: Wind speed
+
+# explore the data first
+
+weather[['AWND', 'WSF2']].head()
+weather[['AWND', 'WSF2']].describe()
+Box plot (when to use)
+ - while representing summary statistics
+
+weather[['AWND', 'WSF2']].plot(kind='box')
+plt.show()
+
+Creating a histogram (1)
+# differentiate between two columns to determine from fastest to average wind speed
+- weather['WDIFF'] = weather.WSF2 - weather.AWND
+
+weather.WDIFF.plot(kind='hist')
+plt.show()
+
+Creating a histogram (2)
+weather.WDIFF.plot(kind='hist', bins=20)
+plt.show()
+
