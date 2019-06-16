@@ -1,0 +1,92 @@
+Categorizing the weather
+ - Slicing the dataframe
+ - to select the data-columns which are are required only for analysis.
+
+weather.shape
+(4017, 28)
+weather.columns
+Index(['STATION', 'DATE', 'TAVG', 'TMIN', 'TMAX', 'AWND', 'WSF2', 'WT01',
+       'WT02', 'WT03', 'WT04', 'WT05', 'WT06', 'WT07', 'WT08', 'WT09',
+       'WT10', 'WT11', 'WT13', 'WT14', 'WT15', 'WT16', 'WT17', 'WT18',
+       'WT19', 'WT21', 'WT22', 'TDIFF'],
+      dtype='object')
+
+temp = weather.loc[:, 'TAVG':'TMAX']
+temp.shape
+(4017, 3)
+temp.columns
+Index(['TAVG', 'TMIN', 'TMAX'], dtype='object')
+
+temp.head()
+
+   TAVG  TMIN  TMAX
+0  44.0    35    53
+1  36.0    28    44
+2  49.0    44    53
+3  42.0    39    45
+4  36.0    28    43
+
+# sum of each columns
+temp.sum()
+
+TAVG     63884.0
+TMIN    174677.0
+TMAX    246116.0
+
+# sum of each row by specifying axis = 'columns'
+temp.sum(axis='columns').head()
+
+0    132.0
+1    108.0
+2    146.0
+3    126.0
+4    107.0
+
+Mapping one set of values to another
+ri.stop_duration.unique()
+array(['0-15 Min', '16-30 Min', '30+ Min'], dtype=object)
+mapping = {'0-15 Min':'short', '16-30 Min':'medium', '30+ Min':'long'}
+
+ri['stop_length'] = ri.stop_duration.map(mapping)
+stop_length as column as object-type 'O'
+
+Changing data type from object to category
+ri.stop_length.unique()
+array(['short', 'medium', 'long'], dtype=object)
+
+Reasons to store data in category:
+ - Category type stores the data more efficiently.
+ - Allows you to specify a logical order for the categories.
+
+ri.stop_length.memory_usage(deep=True)
+8689481
+cats = ['short', 'medium', 'long']
+ri['stop_length'] = ri.stop_length.astype('category', ordered=True,
+                                          categories=cats)
+
+ri.stop_length.memory_usage(deep=True)
+
+Using ordered categories
+ri.stop_length.head()
+
+stop_datetime
+2005-01-04 12:55:00     short
+2005-01-23 23:15:00     short
+2005-02-17 04:15:00     short
+2005-02-20 17:15:00    medium
+2005-02-24 01:20:00     short
+Name: stop_length, dtype: category
+Categories (3, object): [short < medium < long]
+
+Inorder fetch the data of medium to large stops
+
+ri[ri.stop_length > 'short'].shape
+(16959, 16)
+
+ri.groupby('stop_length').is_arrested.mean()
+
+stop_length
+short     0.013654
+medium    0.093595
+long      0.261572
+Name: is_arrested, dtype: float64
